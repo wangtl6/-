@@ -10,13 +10,13 @@ public class MD5Portal {
 		String result = null;
 		
 		//核心包
-//		result = MD5Util.md5(s);
+		result = MD5Util.md5(s);
 //		
 //		//JDK算法
 //		result = jdk(s, result);
 		
 		//apache commons codec，它其实是对JDK的简单封装
-		result= DigestUtils.md5Hex(s) ;
+//		result= DigestUtils.md5Hex(s) ;
 		
 		return result;
 	}

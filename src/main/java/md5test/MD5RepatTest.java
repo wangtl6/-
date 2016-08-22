@@ -50,7 +50,7 @@ public class MD5RepatTest {
 			String newSessionStr = doReplace(sessionStr, i);// 命中的字符修改为'x'
 			String newMd5Str = MD5Portal.md5(newSessionStr);
 			if (md5AndSessionStr.containsKey(newMd5Str)) {
-				System.out.println("有重复,个数：" + (num++) +"，md5Str=" +md5Str+",总长度为：sessionStr=" + sessionStr.length() + ",newSessionStr=" + newSessionStr.length());
+				System.out.println("有重复,个数：" + (num++) +"，md5Str=" +md5Str+",总长度为：sessionStr=" + sessionStr.length() + ",newSessionStr=" + newSessionStr.length()+"，重复概率为："+((double)num/newSessionStr.length()));
 				// System.err.println("有重复，原始串："+md5AndSessionStr.get(newMd5Str)+",计算后串："+newSessionStr);
 			} else {
 				md5AndSessionStr.put(newMd5Str, sessionStr);
@@ -59,7 +59,7 @@ public class MD5RepatTest {
 		System.out.println("计算完成！");
 	}
 
-	static int replaceNum = 2;
+	static int replaceNum = 1;
 
 	private static String doReplace(String sessionStr, int i) {
 		int end = i - 1;
