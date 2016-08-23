@@ -12,7 +12,11 @@ import org.apache.commons.io.IOUtils;
 import md5test.util.MD5Portal;
 
 public class MD5RepatTest {
-	static String file = "E:/综合资料库沉淀-核心库-方案库-产品库/003各分支项目、系统组事项、部门、人员/安徽移动/安徽移动前后端分离==新资料/00空间申请计算，会话序列化真实导出/会话序列化结果文件/file_session_n054E9662B5F37C8BA3B5E33D42300098-1";
+	static String fileName107K="file_session_n657AEF58EE53E42D083A32D215A7BC65-1";
+	static String fileName21K="file_session_n054E9662B5F37C8BA3B5E33D42300098";
+	static String fileName2K="file_session_nFC1515E6A0B84EF310B31B18BC9DB753-1";
+	static String fileName=fileName2K;
+	static String file = "E:/综合资料库沉淀-核心库-方案库-产品库/003各分支项目、系统组事项、部门、人员/安徽移动/安徽移动前后端分离==新资料/00空间申请计算，会话序列化真实导出/会话序列化结果文件/"+fileName;
 	static Map<String, String> md5AndSessionStr = new HashMap<String, String>();
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -39,7 +43,7 @@ public class MD5RepatTest {
 		System.out.println("计算完成！");
 	}
 
-	static int num = 0;
+	private static int countResult = 0;
 
 	private static void check2(String sessionStr) {
 		// 随机修改字符串中某个字符
@@ -50,7 +54,7 @@ public class MD5RepatTest {
 			String newSessionStr = doReplace(sessionStr, i);// 命中的字符修改为'x'
 			String newMd5Str = MD5Portal.md5(newSessionStr);
 			if (md5AndSessionStr.containsKey(newMd5Str)) {
-				System.out.println("有重复,个数：" + (num++) +"，md5Str=" +md5Str+",总长度为：sessionStr=" + sessionStr.length() + ",newSessionStr=" + newSessionStr.length()+"，重复概率为："+((double)num/newSessionStr.length()));
+				System.out.println("有重复,个数：" + (countResult++) +"，md5Str=" +md5Str+",总长度为：sessionStr=" + sessionStr.length() + ",newSessionStr=" + newSessionStr.length()+"，重复概率为："+((double)countResult/newSessionStr.length()));
 				// System.err.println("有重复，原始串："+md5AndSessionStr.get(newMd5Str)+",计算后串："+newSessionStr);
 			} else {
 				md5AndSessionStr.put(newMd5Str, sessionStr);
@@ -59,7 +63,8 @@ public class MD5RepatTest {
 		System.out.println("计算完成！");
 	}
 
-	static int replaceNum = 1;
+	//替换字符数
+	private static int replaceNum =1;
 
 	private static String doReplace(String sessionStr, int i) {
 		int end = i - 1;
